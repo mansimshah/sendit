@@ -1,4 +1,12 @@
-= form_for (@transfer), html: { class: "form-horizontal form-align"} do |f|
+= form_for (@transfer), html: { class: "form-horizontal form-align", multipart: true } do |f|
+  - if @transfer.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@transfer.errors.count, "error")
+        prohibited this article from being saved:
+      %ul
+        - @transfer.errors.full_messages.each do |message|
+          %li= message
   .form-group
     = f.email_field :email_to, required: true, placeholder: 'Email To', class: 'form-control'
   .form-group
@@ -6,7 +14,7 @@
   .form-group
     = f.text_area :message, placeholder: 'Message', class: 'form-control'
   .form-group
-    = f.file_field :attachment, class: 'file-upload'
+    = f.file_field :attachment
   .form-group
     .actions
       %button.btn.btn-success.btn-radius{:type => "submit"} Transfer
