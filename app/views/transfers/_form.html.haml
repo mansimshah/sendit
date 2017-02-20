@@ -1,0 +1,12 @@
+= form_for (@transfer), html: { class: "form-horizontal form-align"} do |f|
+  .form-group
+    = f.email_field :email_to, required: true, placeholder: 'Email To', class: 'form-control'
+  .form-group
+    = f.email_field :email_from, required: true, placeholder: 'Email From', class: 'form-control'
+  .form-group
+    = f.text_area :message, placeholder: 'Message', class: 'form-control'
+  .form-group
+    = f.file_field :attachment, class: 'file-upload'
+  .form-group
+    .actions
+      %button.btn.btn-success.btn-radius{:type => "submit"} Transfer

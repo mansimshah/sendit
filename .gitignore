@@ -20,3 +20,5 @@
 .idea/*.xml
 
 .DS_Store
+
+public/*
