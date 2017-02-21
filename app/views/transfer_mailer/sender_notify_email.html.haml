@@ -1,0 +1,15 @@
+%h3
+  Files successfully sent to #{@transfer.email_to}
+
+%p
+  As soon as a recipient has downloaded your file, you will receive a confirmation email.
+
+%h5
+  %b
+    Recipients
+    #{@transfer.email_to}
+
+%h5
+  %b
+    Files
+    #{@transfer.attachment.file.filename}
