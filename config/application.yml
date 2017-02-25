@@ -1,0 +1,14 @@
+default_env: &default_env
+  MAIL_HOST: 'localhost:3000'
+
+development:
+  env:
+    <<: *default_env
+
+test:
+  env:
+    <<: *default_env
+
+production:
+  env:
+    MAIL_HOST: 'http://send-it.herokuapp.com'
