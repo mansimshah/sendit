@@ -22,5 +22,4 @@
 .DS_Store
 
 public/*
-# Ignore application configuration
-/config/application.yml
+
