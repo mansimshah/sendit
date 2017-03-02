@@ -47,4 +47,5 @@ staging:
 
 production:
   <<: *default_settings
+  app_name: sendit_production
   monitor_mode: true
