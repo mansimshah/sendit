@@ -23,6 +23,5 @@ test:
     <<: *default_env
 
 production:
-  <<: *default_env
   env:
     MAIL_HOST: 'http://send-it.herokuapp.com'
