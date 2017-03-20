@@ -13,6 +13,7 @@
 default_env: &default_env
   MAIL_HOST: 'localhost:3000'
   LICENSE-KEY: '0c2e13558920e3238e50b1b0957ce333cbdc1429'
+  REDISTOGO_URL: 'redis://localhost:6379/0'
 
 development:
   env:
@@ -24,4 +25,4 @@ test:
 
 production:
   env:
-    MAIL_HOST: 'http://send-it.herokuapp.com'
+    MAIL_HOST: 'http://sendit1.herokuapp.com'
