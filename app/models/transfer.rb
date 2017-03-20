@@ -14,11 +14,11 @@ class Transfer < ApplicationRecord
   end
 
   def notify_sender
-    TransferMailer.sender_notify_email(self.id).deliver_now
+    TransferMailer.sender_notify_email(self.id).deliver_later
   end
 
   def notify_receiver
-    TransferMailer.receiver_notify_email(self.id).deliver_now
+    TransferMailer.receiver_notify_email(self.id).deliver_later
   end
 
 end

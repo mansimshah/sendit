@@ -22,3 +22,5 @@
 .DS_Store
 
 public/*
+
+dump.rdb
