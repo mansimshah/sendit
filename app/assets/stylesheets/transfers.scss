@@ -5,3 +5,29 @@
 .form-align{
   margin-top: 18px;
 }
+
+.backstretch{
+  left: 0px;
+  top: 0px;
+  overflow: hidden;
+  margin: 0px;
+  padding: 0px;
+  height: 899px;
+  width: 1895px;
+  z-index: -999998;
+  position: absolute;
+}
+
+.backstretch img {
+  position: absolute;
+  margin: 0px;
+  padding: 0px;
+  border: none;
+  width: 1895px;
+  height: 1263.33px;
+  max-height: none;
+  max-width: none;
+  z-index: -999999;
+  left: 0px;
+  top: -182.167px;
+}
