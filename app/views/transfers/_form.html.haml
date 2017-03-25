@@ -1,20 +1,25 @@
-= form_for (@transfer), html: { class: "form-horizontal form-align", multipart: true } do |f|
-  - if @transfer.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@transfer.errors.count, "error")
-        prohibited this article from being saved:
-      %ul
-        - @transfer.errors.full_messages.each do |message|
-          %li= message
-  .form-group
-    = f.email_field :email_to, required: true, placeholder: 'Email To', class: 'form-control'
-  .form-group
-    = f.email_field :email_from, required: true, placeholder: 'Email From', class: 'form-control'
-  .form-group
-    = f.text_area :message, placeholder: 'Message', class: 'form-control'
-  .form-group
-    = f.file_field :attachment
-  .form-group
-    .actions
-      %button.btn.btn-success.btn-radius{:type => "submit"} Transfer
+.col-sm-6.col-sm-offset-3.r-form-1-box.wow.fadeInUp
+  .r-form-1-top
+    .r-form-1-top-left
+      %p Add your files
+    .r-form-1-top-right
+      %i.fa.fa-pencil
+  .r-form-1-bottom
+    = form_for (@transfer), html: { class: "form-horizontal form-align", multipart: true } do |f|
+      - if @transfer.errors.any?
+        #error_explanation
+          %h2
+            = pluralize(@transfer.errors.count, "error")
+            prohibited this article from being saved:
+          %ul
+            - @transfer.errors.full_messages.each do |message|
+              %li= message
+      .form-group
+        = f.email_field :email_to, required: true, placeholder: 'Email To', class: 'r-form-1-email_to form-control'
+      .form-group
+        = f.email_field :email_from, required: true, placeholder: 'Email From', class: 'form-control'
+      .form-group
+        = f.text_area :message, placeholder: 'Message', class: 'r-form-1-about-yourself form-control'
+      .form-group
+        = f.file_field :attachment
+      %button.btn{:type => "submit"} Transfer

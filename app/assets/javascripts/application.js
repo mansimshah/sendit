@@ -11,7 +11,12 @@
 // about supported directives.
 //
 //= require jquery
+//= require bootstrap-sprockets
 //= require jquery_ujs
 //= require turbolinks
-//= require bootstrap
+//= require jquery.backstretch.min
+//= require placeholder
+//= require retina-1.1.0.min
+//= require scripts
+//= require wow.min
 // require_tree .
