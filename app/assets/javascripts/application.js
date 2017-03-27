@@ -16,7 +16,7 @@
 //= require turbolinks
 //= require jquery.backstretch.min
 //= require placeholder
+//= require wow.min
 //= require retina-1.1.0.min
 //= require scripts
-//= require wow.min
 // require_tree .

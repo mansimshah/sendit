@@ -11,5 +11,3 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.precompile += %w( search.js )
 
 Rails.application.config.assets.precompile += %w( bootstrap-theme.min.css bootstrap-theme.min.css.map jquery.backstretch.min.js placeholder.js retina-1.1.0.min.js scripts.js wow.min.js )
-
-Rails.application.config.assets.paths << Rails.root.join("app", "assets", "fonts")
