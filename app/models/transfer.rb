@@ -5,7 +5,7 @@ class Transfer < ApplicationRecord
   validates_presence_of :email_to, :email_from, :attachment
   validate :image_size_validation
 
-  after_create :notify_sender, :notify_receiver
+  after_save :notify_sender, :notify_receiver
 
   def image_size_validation
     if attachment.size > 2.gigabytes
