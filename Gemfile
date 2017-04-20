@@ -44,6 +44,7 @@ gem 'haml-rails'
 
 gem "font-awesome-rails"
 
+
 gem 'carrierwave'
 
 # To monitor App

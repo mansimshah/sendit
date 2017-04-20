@@ -8,4 +8,4 @@
 %h5
   %b
     Files
-    #{@transfer.attachment.file.filename}
+    = link_to "#{@transfer.attachment.file.filename}", download_file_transfer_url(@transfer.id, host: ENV['MAIL_HOST'])
