@@ -44,8 +44,8 @@ gem 'haml-rails'
 
 gem "font-awesome-rails"
 
-
 gem 'carrierwave'
+gem 'fog', '~> 1.36.0'
 
 # To monitor App
 gem 'newrelic_rpm'
