@@ -21,7 +21,7 @@ class TransfersController < ApplicationController
 
   def download_file
     data = open("#{@transfer.attachment.url}")
-    send_data data.read, filename: "#{@transfer.attachment.file.filename}", disposition: 'inline', stream: 'true', buffer_size: '4096'
+    send_data data.read, filename: "#{@transfer.attachment.file.filename}", disposition: 'attachment', stream: 'true', buffer_size: '4096'
   end
 
   private
