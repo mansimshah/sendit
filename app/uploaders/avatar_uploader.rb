@@ -1,4 +1,4 @@
-class AttachmentUploader < CarrierWave::Uploader::Base
+class AvatarUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
@@ -11,10 +11,6 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    # For Fog storage
-    # "send-it-qa-#{Rails.env}/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-
-    # For File storage
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
