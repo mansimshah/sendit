@@ -11,6 +11,11 @@ class TransferMailer < ApplicationMailer
     mail to: @transfer.email_to, subject: "#{@transfer.email_from} " + 'has sent you a file via SendIt'
   end
 
+  def download_attachment_notify(transfer)
+    return false unless load_transfer(transfer).present?
+    mail to: @transfer.email_from, subject: "#{@transfer.email_to} " + 'downloaded your SendIt files'
+  end
+
   protected
 
   def load_transfer(transfer)

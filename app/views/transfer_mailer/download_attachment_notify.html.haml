@@ -1,0 +1,14 @@
+%h3
+  #{@transfer.email_to} downloaded your files
+
+%h4
+  Files
+  - if @transfer.transfer_attachments.present?
+    - @transfer.transfer_attachments.each do |attachment|
+      %h4
+        #{attachment.avatar_identifier}
+
+%h4
+  Message
+  %h5
+    #{@transfer.message}
