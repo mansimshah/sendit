@@ -3,6 +3,7 @@ class TransfersController < ApplicationController
   before_action :get_transfer, only: [:download_file]
   before_action :get_transfer_attachment, only: [:download_file]
   after_action  :send_notification, only: [:create]
+  after_action  :send_confirm_notification, only: [:download_file]
 
   def index
   end
@@ -53,6 +54,10 @@ class TransfersController < ApplicationController
   def send_notification
     TransferMailer.sender_notify_email(@transfer).deliver_later
     TransferMailer.receiver_notify_email(@transfer).deliver_later
+  end
+
+  def send_confirm_notification
+    TransferMailer.download_attachment_notify(@transfer).deliver_later
   end
 
 end
