@@ -29,10 +29,10 @@ class TransfersController < ApplicationController
   end
 
   def download_file
-    # data = open("#{@transfer.attachment.url}")
-    # send_data data.read, filename: "#{@transfer.attachment.file.filename}", disposition: 'attachment', stream: 'true', buffer_size: '4096'
+    data = open("#{@transfer_attachment.avatar.current_path}")
+    send_data data.read, filename: "#{@transfer_attachment.avatar.file.filename}", disposition: 'attachment', stream: 'true', buffer_size: '4096'
 
-    send_file @transfer_attachment.avatar.current_path, :disposition => 'attachment'
+    # send_file @transfer_attachment.avatar.current_path, :disposition => 'attachment'
   end
 
   private
