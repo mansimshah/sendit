@@ -14,7 +14,7 @@ class TransferMailer < ApplicationMailer
   protected
 
   def load_transfer(transfer)
-    @transfer =  Transfer.find(transfer)
+    @transfer =  Transfer.find(transfer.id)
   end
 
 end

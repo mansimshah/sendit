@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.4.0'
+ruby '2.3.1'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -46,6 +46,12 @@ gem "font-awesome-rails"
 
 gem 'carrierwave'
 gem 'fog', '~> 1.36.0'
+
+# gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+
+gem 'fog', '~> 1.36.0'
+
+# gem 'activesupport-json_encoder', github: 'rails/activesupport-json_encoder'
 
 # To monitor App
 gem 'newrelic_rpm'

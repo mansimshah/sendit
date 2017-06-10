@@ -12,4 +12,7 @@
 %h5
   %b
     Files
-    #{@transfer.attachment.file.filename}
+    - if @transfer.transfer_attachments.present?
+      - @transfer.transfer_attachments.each do |attachment|
+        %h5
+          #{attachment.avatar_identifier}

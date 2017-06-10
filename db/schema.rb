@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170321075603) do
+ActiveRecord::Schema.define(version: 20170609062317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,11 +37,17 @@ ActiveRecord::Schema.define(version: 20170321075603) do
     t.index ["status"], name: "index_sidekiq_jobs_on_status", using: :btree
   end
 
+  create_table "transfer_attachments", force: :cascade do |t|
+    t.integer  "transfer_id"
+    t.string   "avatar"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "transfers", force: :cascade do |t|
     t.string   "email_to",   default: "", null: false
     t.string   "email_from", default: "", null: false
     t.string   "message"
-    t.string   "attachment"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
