@@ -10,4 +10,5 @@
     Files
     - if @transfer.transfer_attachments.present?
       - @transfer.transfer_attachments.each do |attachment|
-        = link_to "#{attachment.avatar_identifier}", download_file_transfer_url(@transfer.id, attachment: attachment.id, host: ENV['MAIL_HOST'])
+        %h5
+          = link_to "#{attachment.avatar_identifier}", download_file_transfer_url(@transfer.id, attachment: attachment.id, host: ENV['MAIL_HOST'])

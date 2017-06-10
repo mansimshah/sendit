@@ -14,4 +14,5 @@
     Files
     - if @transfer.transfer_attachments.present?
       - @transfer.transfer_attachments.each do |attachment|
-        #{attachment.avatar_identifier}
+        %h5
+          #{attachment.avatar_identifier}
