@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 20170614095916) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.boolean  "status",     default: false
-    t.datetime "deleted_on",                 null: false
+    t.datetime "deleted_on"
   end
 
 end
