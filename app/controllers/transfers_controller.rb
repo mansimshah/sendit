@@ -2,7 +2,7 @@ class TransfersController < ApplicationController
 
   before_action :get_transfer, only: [:download_file]
   before_action :get_transfer_attachment, only: [:download_file]
-  after_action  :send_notification, only: [:create]
+  # after_action  :send_notification, only: [:create]
   after_action  :send_confirm_notification, only: [:download_file]
 
   def index
@@ -20,9 +20,6 @@ class TransfersController < ApplicationController
       params[:transfer_attachments]['avatar'].each do |attachment|
         @transfer_attachments = @transfer.transfer_attachments.create!(:avatar => attachment, :transfer_id => @transfer.id)
       end
-      # TransferMailer.sender_notify_email(@transfer).deliver
-      # TransferMailer.receiver_notify_email(@transfer).deliver
-
       redirect_to transfers_path
     else
       render 'new'
@@ -39,8 +36,8 @@ class TransfersController < ApplicationController
   private
 
   def transfer_params
-    # params.require(:transfer).permit(:email_to, :email_from, :message, :transfer_attachments_attributes => [:id, :transfer_id, :avatar])
-    params.require(:transfer).permit(:email_to, :email_from, :message)
+    params.require(:transfer).permit(:email_to, :email_from, :message, :transfer_attachments_attributes => [:id, :transfer_id, :avatar, :_destroy])
+    # params.require(:transfer).permit(:email_to, :email_from, :message)
   end
 
   def get_transfer
