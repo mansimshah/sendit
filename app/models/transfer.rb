@@ -8,6 +8,8 @@ class Transfer < ApplicationRecord
 
   # after_save :notify_sender, :notify_receiver
 
+  after_create :set_deleted_on
+
   # validate :image_size_validation
   #
   # def image_size_validation
@@ -23,5 +25,9 @@ class Transfer < ApplicationRecord
   # def notify_receiver
   #   TransferMailer.receiver_notify_email(self.id).deliver_later
   # end
+
+  def set_deleted_on
+    self.update_attribute(:deleted_on,created_at + 7.days)
+  end
 
 end
