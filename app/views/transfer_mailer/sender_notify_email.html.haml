@@ -16,3 +16,6 @@
       - @transfer.transfer_attachments.each do |attachment|
         %h5
           #{attachment.avatar_identifier}
+
+%h5
+  Will be deleted on #{l(@transfer.deleted_on.to_date, format: :long)}

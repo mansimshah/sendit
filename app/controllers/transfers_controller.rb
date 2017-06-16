@@ -2,7 +2,7 @@ class TransfersController < ApplicationController
 
   before_action :get_transfer, only: [:download_file]
   before_action :get_transfer_attachment, only: [:download_file]
-  # after_action  :send_notification, only: [:create]
+  after_action  :send_notification, only: [:create]
   after_action  :send_confirm_notification, only: [:download_file]
 
   def index
@@ -17,8 +17,10 @@ class TransfersController < ApplicationController
     @transfer = Transfer.new(transfer_params)
 
     if @transfer.save
-      params[:transfer_attachments]['avatar'].each do |attachment|
-        @transfer_attachments = @transfer.transfer_attachments.create!(:avatar => attachment, :transfer_id => @transfer.id)
+      if params[:transfer_attachments]['avatar'].present?
+        params[:transfer_attachments]['avatar'].each do |attachment|
+          @transfer_attachments = @transfer.transfer_attachments.create!(:avatar => attachment, :transfer_id => @transfer.id)
+        end
       end
       redirect_to transfers_path
     else

@@ -21,3 +21,8 @@
 
 en:
   hello: "Hello world"
+
+time:
+      formats:
+        long: "%d-%M,%y"
+
