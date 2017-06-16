@@ -12,3 +12,6 @@
       - @transfer.transfer_attachments.each do |attachment|
         %h5
           = link_to "#{attachment.avatar_identifier}", download_file_transfer_url(@transfer.id, attachment: attachment.id, host: ENV['MAIL_HOST'])
+
+%h5
+  Will be deleted on #{l(@transfer.deleted_on.to_date, format: :long)}

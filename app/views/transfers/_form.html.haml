@@ -25,6 +25,6 @@
         = f.fields_for :transfer_attachments do |ff|
           = ff.label :avatar
           %br/
-          = ff.file_field :avatar, :multiple => true, name: "transfer_attachments[avatar][]"
+          = ff.file_field :avatar, :multiple => true, name: "transfer_attachments[avatar][]", required: true
 
       %button.btn{:type => "submit"} Transfer

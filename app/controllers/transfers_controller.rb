@@ -17,12 +17,11 @@ class TransfersController < ApplicationController
     @transfer = Transfer.new(transfer_params)
 
     if @transfer.save
-      params[:transfer_attachments]['avatar'].each do |attachment|
-        @transfer_attachments = @transfer.transfer_attachments.create!(:avatar => attachment, :transfer_id => @transfer.id)
+      if params[:transfer_attachments]['avatar'].present?
+        params[:transfer_attachments]['avatar'].each do |attachment|
+          @transfer_attachments = @transfer.transfer_attachments.create!(:avatar => attachment, :transfer_id => @transfer.id)
+        end
       end
-      # TransferMailer.sender_notify_email(@transfer).deliver
-      # TransferMailer.receiver_notify_email(@transfer).deliver
-
       redirect_to transfers_path
     else
       render 'new'
@@ -34,13 +33,14 @@ class TransfersController < ApplicationController
     send_data data.read, filename: "#{@transfer_attachment.avatar.file.filename}", disposition: 'attachment', stream: 'true', buffer_size: '4096'
 
     # send_file @transfer_attachment.avatar.current_path, :disposition => 'attachment'
+    @transfer.update_attribute(:status,true)
   end
 
   private
 
   def transfer_params
-    # params.require(:transfer).permit(:email_to, :email_from, :message, :transfer_attachments_attributes => [:id, :transfer_id, :avatar])
-    params.require(:transfer).permit(:email_to, :email_from, :message)
+    params.require(:transfer).permit(:email_to, :email_from, :message, :transfer_attachments_attributes => [:id, :transfer_id, :avatar, :_destroy])
+    # params.require(:transfer).permit(:email_to, :email_from, :message)
   end
 
   def get_transfer
