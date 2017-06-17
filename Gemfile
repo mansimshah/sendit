@@ -65,6 +65,12 @@ gem 'fog', '~> 1.36.0'
 
 # gem 'activesupport-json_encoder', github: 'rails/activesupport-json_encoder'
 
+# gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+
+gem 'fog', '~> 1.36.0'
+
+# gem 'activesupport-json_encoder', github: 'rails/activesupport-json_encoder'
+
 # To monitor App
 gem 'newrelic_rpm'
 gem 'ruby-prof'
