@@ -1,7 +1,7 @@
 class TransfersController < ApplicationController
 
   before_action :get_transfer, only: [:download_file, :download_all_files]
-  before_action :get_transfer_attachment, only: [:download_file]
+  before_action :get_transfer_attachment, only: [:download_file, :download_all_files]
   after_action  :send_notification, only: [:create]
   after_action  :send_download_notification, only: [:download_file]
   after_action  :send_all_download_notification, only: [:download_all_files]

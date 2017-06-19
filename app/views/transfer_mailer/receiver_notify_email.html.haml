@@ -13,7 +13,7 @@
         %h4
           = link_to "#{attachment.avatar_identifier}", download_file_transfer_url(@transfer.id, attachment: attachment.id, host: ENV['MAIL_HOST'])
     %h4
-      = link_to "Download all", download_all_files_transfer_url(@transfer.id, host: ENV['MAIL_HOST'])
+      = link_to "Download all", download_all_files_transfer_url(@transfer.id, host: ENV['MAIL_HOST']), class: 'btn btn-primary'
 
 %h4
   Will be deleted on #{l(@transfer.deleted_on.to_date, format: :long)}
