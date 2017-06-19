@@ -4,18 +4,18 @@
 %p
   As soon as a recipient has downloaded your file, you will receive a confirmation email.
 
-%h5
+%h4
   %b
     Recipients
     #{@transfer.email_to}
 
-%h5
+%h4
   %b
     Files
     - if @transfer.transfer_attachments.present?
       - @transfer.transfer_attachments.each do |attachment|
-        %h5
+        %h4
           #{attachment.avatar_identifier}
 
-%h5
+%h4
   Will be deleted on #{l(@transfer.deleted_on.to_date, format: :long)}
