@@ -53,12 +53,12 @@ class TransfersController < ApplicationController
   end
 
   def send_notification
-    TransferMailer.sender_notify_email(@transfer).deliver
-    TransferMailer.receiver_notify_email(@transfer).deliver
+    TransferMailer.sender_notify_email(@transfer).deliver_later
+    TransferMailer.receiver_notify_email(@transfer).deliver_later
   end
 
   def send_confirm_notification
-    TransferMailer.download_attachment_notify(@transfer).deliver
+    TransferMailer.download_attachment_notify(@transfer).deliver_later
   end
 
 end
