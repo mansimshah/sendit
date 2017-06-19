@@ -33,7 +33,6 @@ class TransfersController < ApplicationController
     send_data data.read, filename: "#{@transfer_attachment.avatar.file.filename}", disposition: 'attachment', stream: 'true', buffer_size: '4096'
 
     # send_file @transfer_attachment.avatar.current_path, :disposition => 'attachment'
-    @transfer.update_attribute(:status,true)
   end
 
   private
