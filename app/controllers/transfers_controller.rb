@@ -1,7 +1,7 @@
 class TransfersController < ApplicationController
 
   before_action :get_transfer, only: [:download_file, :download_all_files]
-  before_action :get_transfer_attachment, only: [:download_file, :download_all_files]
+  before_action :get_transfer_attachment, only: [:download_file]
   after_action  :send_notification, only: [:create]
   after_action  :send_download_notification, only: [:download_file]
   after_action  :send_all_download_notification, only: [:download_all_files]
@@ -42,7 +42,7 @@ class TransfersController < ApplicationController
     @transfer.transfer_attachments.each do |attachment|
       data = open("#{attachment.avatar.url}")
       send_data data.read, filename: "#{attachment.avatar.file.filename}", disposition: 'attachment', stream: 'true', buffer_size: '4096'
-      @transfer_attachment.update_attribute(:status,true)
+      attachment.update_attribute(:status,true)
     end
 
   end
