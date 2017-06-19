@@ -33,6 +33,8 @@ class TransfersController < ApplicationController
     send_data data.read, filename: "#{@transfer_attachment.avatar.file.filename}", disposition: 'attachment', stream: 'true', buffer_size: '4096'
 
     # send_file @transfer_attachment.avatar.current_path, :disposition => 'attachment'
+
+    @transfer_attachment.update_attribute(:status,true)
   end
 
   private
@@ -51,12 +53,12 @@ class TransfersController < ApplicationController
   end
 
   def send_notification
-    TransferMailer.sender_notify_email(@transfer).deliver_later
-    TransferMailer.receiver_notify_email(@transfer).deliver_later
+    TransferMailer.sender_notify_email(@transfer).deliver
+    TransferMailer.receiver_notify_email(@transfer).deliver
   end
 
   def send_confirm_notification
-    TransferMailer.download_attachment_notify(@transfer).deliver_later
+    TransferMailer.download_attachment_notify(@transfer).deliver
   end
 
 end
