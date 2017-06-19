@@ -39,12 +39,14 @@ class TransfersController < ApplicationController
   end
 
   def download_all_files
-    @transfer.transfer_attachments.each do |attachment|
-      data = open("#{attachment.avatar.url}")
-      send_data data.read, filename: "#{attachment.avatar.file.filename}", disposition: 'attachment', stream: 'true', buffer_size: '4096'
-      attachment.update_attribute(:status,true)
+    zipfile_name = "#{Rails.root}/public/archive.zip"
+    Zip::File.open(zipfile_name, Zip::File::CREATE) do |zipfile|
+      @transfer.transfer_attachments.each do |attachment|
+        zipfile.add(attachment.avatar.file.filename,attachment.avatar.url)
+      end
+      zipfile.get_output_stream("success") { |os| os.write "All done successfully" }
     end
-
+    send_file(File.join("#{Rails.root}/public/", 'archive.zip'), :type => 'application/zip', :filename => "#{Time.now.to_date}.zip")
   end
 
   private
