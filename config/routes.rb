@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :transfers do
     member do
       get :download_file
+      get :download_all_files
     end
   end
 
