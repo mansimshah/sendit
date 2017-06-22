@@ -34,8 +34,6 @@ class TransfersController < ApplicationController
     send_data data.read, filename: "#{@transfer_attachment.avatar.file.filename}", disposition: 'attachment', stream: 'true', buffer_size: '4096'
 
     # send_file @transfer_attachment.avatar.current_path, :disposition => 'attachment'
-
-    @transfer_attachment.update_attribute(:status,true)
   end
 
   def download_all_files
@@ -71,7 +69,10 @@ class TransfersController < ApplicationController
 
   # Single file notification
   def send_download_notification
-    TransferMailer.download_attachment_notify(@transfer,@transfer_attachment).deliver_later
+    if @transfer_attachment.status == false
+      @transfer_attachment.update_attribute(:status,true)
+      TransferMailer.download_attachment_notify(@transfer,@transfer_attachment).deliver_later
+    end
   end
 
   # All files notification
