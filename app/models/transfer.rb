@@ -1,6 +1,6 @@
 class Transfer < ApplicationRecord
 
-  has_many :transfer_attachments
+  has_many :transfer_attachments, dependent: :destroy
 
   accepts_nested_attributes_for :transfer_attachments
 
