@@ -101,7 +101,7 @@ class TransfersController < ApplicationController
         check_counter = check_counter + 1
       end
     end
-    TransferMailer.download_all_attachment_notify(@transfer,@transfer_attachment).deliver_later if check_counter > 0
+    TransferMailer.download_all_attachment_notify(@transfer).deliver_later if check_counter > 0
   end
 
 end
