@@ -94,14 +94,15 @@ class TransfersController < ApplicationController
 
   # All files notification
   def send_all_download_notification
-    check_counter = 0
+    flag = false
     @transfer.transfer_attachments.each do |attachment|
       if attachment.status == false
         attachment.update_attribute(:status,true)
-        check_counter = check_counter + 1
+      else
+        flag = true
       end
     end
-    TransferMailer.download_all_attachment_notify(@transfer).deliver_later if check_counter > 0
+    TransferMailer.download_all_attachment_notify(@transfer).deliver_later if flag == false
   end
 
 end
