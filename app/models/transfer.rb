@@ -1,4 +1,5 @@
 class Transfer < ApplicationRecord
+  acts_as_paranoid
 
   has_many :transfer_attachments, dependent: :destroy
 

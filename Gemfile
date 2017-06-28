@@ -66,6 +66,8 @@ gem 'zip-zip' # will load compatibility for old rubyzip API.
 
 gem 'whenever', :require => false
 
+gem "paranoia", "~> 2.2"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
