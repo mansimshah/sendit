@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     member do
       get :download_file
       get :download_all_files
+      get :show_attachment_status
     end
   end
 
