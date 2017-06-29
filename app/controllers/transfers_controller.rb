@@ -25,42 +25,56 @@ class TransfersController < ApplicationController
         end
       end
       redirect_to transfers_path
+
     else
       render 'new'
     end
   end
 
+  def show_attachment_status
+  end
+
   def download_file
-    data = open("#{@transfer_attachment.avatar.url}")
-    send_data data.read, filename: "#{@transfer_attachment.avatar.file.filename}", disposition: 'attachment', stream: 'true', buffer_size: '4096'
+    if @transfer.deleted_at.nil?
+      data = open("#{@transfer_attachment.avatar.url}")
+      send_data data.read, filename: "#{@transfer_attachment.avatar.file.filename}", disposition: 'attachment', stream: 'true', buffer_size: '4096'
+    else
+      redirect_to show_attachment_status_transfer_url(@transfer)
+    end
 
     # send_file @transfer_attachment.avatar.current_path, :disposition => 'attachment'
   end
 
   def download_all_files
-    folder_path = "#{Rails.root}/public/downloads/"
-    zipfile_name = "#{Rails.root}/public/archive.zip"
 
-    FileUtils.remove_dir(folder_path) if Dir.exist?(folder_path)
-    FileUtils.remove_entry(zipfile_name) if File.exist?(zipfile_name)
+    if @transfer.deleted_at.nil?
+      folder_path = "#{Rails.root}/public/downloads/"
+      zipfile_name = "#{Rails.root}/public/archive.zip"
 
-    Dir.mkdir("#{Rails.root}/public/downloads")
+      FileUtils.remove_dir(folder_path) if Dir.exist?(folder_path)
+      FileUtils.remove_entry(zipfile_name) if File.exist?(zipfile_name)
 
-    @transfer.transfer_attachments.each do |attachment|
-      open(folder_path + "#{attachment.avatar.file.filename}", 'wb') do |file|
-        file << open("#{attachment.avatar.url}").read
+      Dir.mkdir("#{Rails.root}/public/downloads")
+
+      @transfer.transfer_attachments.each do |attachment|
+        open(folder_path + "#{attachment.avatar.file.filename}", 'wb') do |file|
+          file << open("#{attachment.avatar.url}").read
+        end
       end
-    end
 
-    input_filenames = Dir.entries(folder_path).select {|f| !File.directory? f}
+      input_filenames = Dir.entries(folder_path).select {|f| !File.directory? f}
 
-    Zip::File.open(zipfile_name, Zip::File::CREATE) do |zipfile|
-      input_filenames.each do |attachment|
-        zipfile.add(attachment,File.join(folder_path,attachment))
+      Zip::File.open(zipfile_name, Zip::File::CREATE) do |zipfile|
+        input_filenames.each do |attachment|
+          zipfile.add(attachment,File.join(folder_path,attachment))
+        end
       end
-    end
 
-    send_file(File.join("#{Rails.root}/public/", 'archive.zip'), :type => 'application/zip', :filename => "#{Time.now.to_date}.zip")
+      send_file(File.join("#{Rails.root}/public/", 'archive.zip'), :type => 'application/zip', :filename => "#{Time.now.to_date}.zip")
+
+    else
+      redirect_to show_attachment_status_transfer_url(@transfer)
+    end
 
   end
 
