@@ -5,7 +5,10 @@
     .r-form-1-top-right
       %i.fa.fa-pencil
   .r-form-1-bottom
-    = form_for (@transfer), html: { class: "form-horizontal form-align", multipart: true } do |f|
+    .loader{style: "display:none;"}
+      #loading
+        %img#loading-image{:alt => "Loading...", :src => "/assets/home/ajax-loader.png"}/
+    = form_for (@transfer), html: { class: "form-horizontal form-align", multipart: true, id: "transfer_form" } do |f|
       - if @transfer.errors.any?
         #error_explanation
           %h2
@@ -28,3 +31,11 @@
           = ff.file_field :avatar, :multiple => true, name: "transfer_attachments[avatar][]", required: true
 
       %button.btn{:type => "submit"} Transfer
+
+:coffeescript
+
+  $(document).ready ->
+    $(".loader").hide()
+
+  $('#transfer_form').submit (event) ->
+    $(".loader").show()
