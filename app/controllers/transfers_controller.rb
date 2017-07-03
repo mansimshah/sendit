@@ -86,11 +86,11 @@ class TransfersController < ApplicationController
   end
 
   def get_transfer
-    @transfer = Transfer.find(params[:id])
+    @transfer = Transfer.with_deleted.find(params[:id])
   end
 
   def get_transfer_attachment
-    @transfer_attachment = TransferAttachment.find(params[:attachment])
+    @transfer_attachment = TransferAttachment.with_deleted.find(params[:attachment])
   end
 
   def send_notification
