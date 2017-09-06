@@ -24,3 +24,5 @@
 public/*
 
 dump.rdb
+
+config/database.yml
