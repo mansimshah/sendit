@@ -1,3 +1,11 @@
+.image-upload > input
+{
+   display: none;
+}
+
+.image-upload > label{
+  cursor: pointer;
+}
 
 body {
     font-family: 'Raleway', sans-serif;

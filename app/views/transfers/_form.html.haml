@@ -21,9 +21,13 @@
         = f.text_area :message, placeholder: 'Message', class: 'r-form-1-about-yourself form-control'
       .form-group
         = f.fields_for :transfer_attachments do |ff|
-          = ff.label :avatar
-          %br/
-          = ff.file_field :avatar, :multiple => true, name: "transfer_attachments[avatar][]", required: true
+          / = ff.label :avatar
+          / %br/
+          / = ff.file_field :avatar, :multiple => true, name: "transfer_attachments[avatar][]", required: true
+          .image-upload
+            %label{:for => "file-input"}
+              %span.fa.fa-upload.fa-2x
+            = ff.file_field :avatar, :multiple => true, name: "transfer_attachments[avatar][]", id:"file-input", required: true
 
       %button.btn{:type => "submit"} Transfer
 
